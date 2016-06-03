@@ -1,0 +1,5 @@
+This folder has cpp files for this assignment.
+
+Trade.cpp - List the trade with quantity, price and trade type indicator. 
+Stock.cpp - List stock details and all calculate function as mentioned in assignment.
+main.cpp  - This file uses example data in assignment to test above 2 classes and their functionality.
