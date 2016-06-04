@@ -186,7 +186,7 @@ double calcGBCEAllShareIndex( map<string, shared_ptr<Stock> > allStocks )
 	auto it = allStocks.begin();
 	while (it != allStocks.end())
 	{
-		allStocksVolWeightedPrice *= it->second->calcVolWeightedStockPrice();
+		allStocksVolWeightedPrice *= it->second->calcVolWeightedStockPrice(false);
 		it++;
 	}
 
