@@ -133,10 +133,14 @@ void Stock::sell(double price, int quantity)
 
 
 /*
-	Calculate Volume Weighted Stock Price based on trades in past  5 minutes
+	Calculate Volume Weighted Stock Price 
 	Assumption: Ignoring buy/sell indicator while calculating the value. 
+
+	@Parameter threasholdCheck - optional parameter to decide below based on flag passed
+	if true - calculate volume weighted stock price based on trades in past  5 minutes
+	if false - calculate volume weighted stock price for all trades irrespective time they were booked
 */
-double Stock::calcVolWeightedStockPrice()
+double Stock::calcVolWeightedStockPrice( bool threasholdCheck )
 {
 	int totalStockQty = 0;
 	double totalValueOfStock = 0;
@@ -147,11 +151,15 @@ double Stock::calcVolWeightedStockPrice()
 	auto it = this->trades.begin();
 	while (it != this->trades.end())
 	{
-		if (it->first > threshold)
+		if (threasholdCheck && it->first < threshold)
 		{
-			totalStockQty += it->second->getQuantity();
-			totalValueOfStock += it->second->getPrice() * it->second->getQuantity();
-		}
+			it++;
+			continue;
+		}			
+				
+		totalStockQty += it->second->getQuantity();
+		totalValueOfStock += it->second->getPrice() * it->second->getQuantity();
+
 		it++;
 	}
 
