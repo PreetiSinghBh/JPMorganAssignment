@@ -48,7 +48,7 @@ public:
 	double calcPERatio(double);
 	void buy(double price,int quantity);
 	void sell(double price, int quantity);
-	double calcVolWeightedStockPrice();
+	double calcVolWeightedStockPrice(bool = true);
 	
 	//static function to get instance of this class
 	static shared_ptr<Stock> getStockInstance(string,string,double,double,double);
